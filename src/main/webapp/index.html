@@ -38,6 +38,7 @@
 		 */
 		var urlParams = (function()
 		{
+			debugger
 			var result = new Object();
 			var params = window.location.search.slice(1).split('&');
 			
@@ -57,6 +58,7 @@
 		// Forces CDN caches by passing URL parameters via URL hash
 		if (window.location.hash != null && window.location.hash.substring(0, 2) == '#P')
 		{
+			debugger
 			try
 			{
 				urlParams = JSON.parse(decodeURIComponent(window.location.hash.substring(2)));
@@ -75,12 +77,13 @@
 		// Global variable for desktop
 		var mxIsElectron = navigator.userAgent != null && navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && 
 							navigator.userAgent.indexOf(' draw.io/') > -1;
-
+debugger
 		// Redirects page if required
 		if (urlParams['dev'] != '1')
 		{
+			debugger
 			(function()
-			{
+			{debugger
 				var proto = window.location.protocol;
 				
 				if (!mxIsElectron)
@@ -111,6 +114,7 @@
 		 */
 		function mxmeta(name, content, httpEquiv)
 		{
+			debugger
 			try
 			{
 				var s = document.createElement('meta');
@@ -141,6 +145,7 @@
 		 */
 		function mxscript(src, onLoad, id, dataAppKey, noWrite, onError)
 		{
+			debugger
 			var defer = onLoad == null && !noWrite;
 			
 			if ((urlParams['dev'] != '1' && typeof document.createElement('canvas').getContext === "function") ||
@@ -202,6 +207,7 @@
 		 */
 		function mxinclude(src)
 		{
+			debugger
 			var g = document.createElement('script');
 			g.type = 'text/javascript';
 			g.async = true;
@@ -216,6 +222,7 @@
 		 */
 		(function()
 		{
+			debugger
 			var name = 'diagrams.net';
 			mxmeta('apple-mobile-web-app-title', name);
 			mxmeta('application-name', name);
@@ -242,6 +249,7 @@
 		
 		function checkAllLoaded()
 		{
+			debugger
 			if (mxScriptsLoaded && mxWinLoaded)
 			{
 				App.main();				
@@ -253,6 +261,7 @@
 		// Changes paths for local development environment
 		if (urlParams['dev'] == '1')
 		{
+			debugger
 			// Used to request grapheditor/mxgraph sources in dev mode
 			var mxDevUrl = document.location.protocol + '//test.draw.io/drawio/src/main';
 			
@@ -296,6 +305,7 @@
 		{
 			(function()
 			{
+				debugger
 				var hostName = window.location.hostname;
 				
 				// Supported domains are *.draw.io and the packaged version in Quip
@@ -350,6 +360,7 @@
 		// Adds basic error handling
 		window.onerror = function()
 		{
+			debugger
 			var status = document.getElementById('geStatus');
 			
 			if (status != null)
@@ -422,7 +433,7 @@
 	</style>
 	<!-- Workaround for binary XHR in IE 9/10, see App.loadUrl -->
 	<!--[if (IE 9)|(IE 10)]><!-->
-		<script type="text/vbscript">
+		<!--<script type="text/vbscript">
 			Function mxUtilsBinaryToArray(Binary)
 				Dim i
 				ReDim byteArray(LenB(Binary))
@@ -431,7 +442,7 @@
 				Next
 				mxUtilsBinaryToArray = byteArray
 			End Function
-		</script>
+		</script> -->
 	<!--<![endif]-->
 </head>
 <body class="geEditor">
